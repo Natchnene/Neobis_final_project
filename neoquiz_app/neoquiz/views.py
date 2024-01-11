@@ -23,6 +23,8 @@ class ArticlePaginationListAPIView(generics.ListAPIView):
         'operation_description': 'Get a list of articles with pagination.',
         'manual_parameters': [
             openapi.Parameter('page', openapi.IN_QUERY, description='Page number', type=openapi.TYPE_INTEGER),
+            openapi.Parameter('page_size', openapi.IN_QUERY, description="Number of items per page",
+                              type=openapi.TYPE_INTEGER),
         ],
         'responses': {
             200: ArticleSerializer(many=True),
@@ -45,7 +47,7 @@ class ArticleSearchListAPIView(generics.ListAPIView):
                 type=openapi.TYPE_STRING,
                 required=False
             ),
-    ],
+        ],
         responses={
             200: ArticleSerializer(many=True),
             400: 'Bad Request',
